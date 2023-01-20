@@ -28,5 +28,4 @@ create table checks
    primary key (id)
 );
 
-create sequence hibernate_sequence start with 1000 increment by 1;
 ALTER TABLE medication ADD CONSTRAINT medication_drone_fkey FOREIGN KEY (drone_id) REFERENCES drone;

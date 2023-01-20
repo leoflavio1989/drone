@@ -1,0 +1,1138 @@
+{
+	"info": {
+		"_postman_id": "c93beca4-3a89-4b6c-84ca-e0575be2884a",
+		"name": "Musala Drone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15840214"
+	},
+	"item": [
+		{
+			"name": "Drone",
+			"item": [
+				{
+					"name": "Add drone",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"serialNumber\": \"JHd55+++K54SD\",\r\n    \"model\": \"Middleweight\",\r\n    \"weightLimit\":4400,\r\n    \"batteryCapacity\": 390,\r\n    \"state\": \"RETURNING\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/drone/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"drone",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add drone",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"serialNumber\": \"JHK54SD\",\r\n    \"model\": \"Middleweight\",\r\n    \"weightLimit\":300,\r\n    \"batteryCapacity\": 90,\r\n    \"state\": \"RETURNING\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8070/v1/drone/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8070",
+									"path": [
+										"v1",
+										"drone",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jan 2023 14:47:56 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"22\",\n    \"serialNumber\": \"JHK54SD\",\n    \"model\": \"Middleweight\",\n    \"weightLimit\": 300,\n    \"batteryCapacity\": 90,\n    \"state\": \"RETURNING\"\n}"
+						}
+					]
+				},
+				{
+					"name": "List of drone",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/v1/drone/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"drone",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List of drone",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8070/v1/drone/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8070",
+									"path": [
+										"v1",
+										"drone",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jan 2023 14:38:47 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"1\",\n        \"serialNumber\": \"SD54SD65\",\n        \"model\": \"Lightweight\",\n        \"weightLimit\": 200,\n        \"batteryCapacity\": 100,\n        \"state\": \"IDLE\"\n    },\n    {\n        \"id\": \"2\",\n        \"serialNumber\": \"BDVB548DF\",\n        \"model\": \"Cruiserweight\",\n        \"weightLimit\": 250,\n        \"batteryCapacity\": 80,\n        \"state\": \"LOADING\"\n    },\n    {\n        \"id\": \"3\",\n        \"serialNumber\": \"894DSF49SD4F98S4DF9\",\n        \"model\": \"Heavyweight\",\n        \"weightLimit\": 500,\n        \"batteryCapacity\": 30,\n        \"state\": \"RETURNING\"\n    },\n    {\n        \"id\": \"4\",\n        \"serialNumber\": \"4SFSDFWEF44\",\n        \"model\": \"Middleweight\",\n        \"weightLimit\": 400,\n        \"batteryCapacity\": 70,\n        \"state\": \"LOADED\"\n    },\n    {\n        \"id\": \"5\",\n        \"serialNumber\": \"kdsnfjsbdf\",\n        \"model\": \"Middleweight\",\n        \"weightLimit\": 300,\n        \"batteryCapacity\": 90,\n        \"state\": \"RETURNING\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Drone",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/v1/drone/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"drone",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Drone",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8070/v1/drone/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8070",
+									"path": [
+										"v1",
+										"drone",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jan 2023 16:30:34 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"2\",\n    \"serialNumber\": \"BDVB548DF\",\n    \"model\": \"Cruiserweight\",\n    \"weightLimit\": 250,\n    \"batteryCapacity\": 80,\n    \"state\": \"LOADED\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Drone battery",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/v1/drone/2/batterylevel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"drone",
+								"2",
+								"batterylevel"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Drone",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8070/v1/drone/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8070",
+									"path": [
+										"v1",
+										"drone",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jan 2023 16:30:34 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"2\",\n    \"serialNumber\": \"BDVB548DF\",\n    \"model\": \"Cruiserweight\",\n    \"weightLimit\": 250,\n    \"batteryCapacity\": 80,\n    \"state\": \"LOADED\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update drone",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"serialNumber\": \"BDVB548DF\",\r\n    \"model\": \"Cruiserweight\",\r\n    \"weightLimit\":250,\r\n    \"batteryCapacity\": 20,\r\n    \"state\": \"IDLE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/drone",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"drone"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update drone",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 2,\r\n    \"serialNumber\": \"BDVB548DF\",\r\n    \"model\": \"Cruiserweight\",\r\n    \"weightLimit\":250,\r\n    \"batteryCapacity\": 70,\r\n    \"state\": \"LOADED\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8070/v1/drone",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8070",
+									"path": [
+										"v1",
+										"drone"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jan 2023 14:53:09 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"2\",\n    \"serialNumber\": \"BDVB548DF\",\n    \"model\": \"Cruiserweight\",\n    \"weightLimit\": 250,\n    \"batteryCapacity\": 70,\n    \"state\": \"LOADED\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update drone state",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/drone/2/nextstate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"drone",
+								"2",
+								"nextstate"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update drone",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 2,\r\n    \"serialNumber\": \"BDVB548DF\",\r\n    \"model\": \"Cruiserweight\",\r\n    \"weightLimit\":250,\r\n    \"batteryCapacity\": 70,\r\n    \"state\": \"LOADED\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8070/v1/drone",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8070",
+									"path": [
+										"v1",
+										"drone"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jan 2023 14:53:09 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"2\",\n    \"serialNumber\": \"BDVB548DF\",\n    \"model\": \"Cruiserweight\",\n    \"weightLimit\": 250,\n    \"batteryCapacity\": 70,\n    \"state\": \"LOADED\"\n}"
+						},
+						{
+							"name": "Update drone state",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8070/v1/drone/2/nextstate",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8070",
+									"path": [
+										"v1",
+										"drone",
+										"2",
+										"nextstate"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jan 2023 16:27:26 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"State changed\"\n}"
+						}
+					]
+				},
+				{
+					"name": "List of available drones",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/v1/drone/available",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"drone",
+								"available"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List of available drones",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8070/v1/drone/available",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8070",
+									"path": [
+										"v1",
+										"drone",
+										"available"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jan 2023 15:48:24 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"1\",\n        \"serialNumber\": \"SD54SD65\",\n        \"model\": \"Lightweight\",\n        \"weightLimit\": 200,\n        \"batteryCapacity\": 100,\n        \"state\": \"IDLE\"\n    },\n    {\n        \"id\": \"2\",\n        \"serialNumber\": \"BDVB548DF\",\n        \"model\": \"Cruiserweight\",\n        \"weightLimit\": 250,\n        \"batteryCapacity\": 70,\n        \"state\": \"IDLE\"\n    }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Medication",
+			"item": [
+				{
+					"name": "Add medication",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Ozempic\",\r\n    \"code\": \"OZEMPIC_22\",\r\n    \"weight\":24,\r\n    \"image\": \"http://localhost:8080/public/Ozempic.png\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/medication/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"medication",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add medication",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Ozempic\",\r\n    \"code\": \"OZEMPIC_22\",\r\n    \"weight\":24,\r\n    \"image\": \"http://localhost:8080/public/Ozempic.png\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8070/v1/medication/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8070",
+									"path": [
+										"v1",
+										"medication",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jan 2023 14:43:12 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"20\",\n    \"name\": \"Ozempic\",\n    \"weight\": 24,\n    \"code\": \"OZEMPIC_22\",\n    \"image\": \"http://localhost:8080/public/Ozempic.png\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update medication",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"name\": \"Ozempic\",\r\n    \"code\": \"OZEMPIC_41\",\r\n    \"weight\":25,\r\n    \"image\": \"http://localhost:8080/public/Ozempic.png\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/medication/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"medication",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update medication",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 2,\r\n    \"name\": \"Ozempic\",\r\n    \"code\": \"OZEMPIC_41\",\r\n    \"weight\":25,\r\n    \"image\": \"http://localhost:8080/public/Ozempic.png\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8070/v1/medication/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8070",
+									"path": [
+										"v1",
+										"medication",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jan 2023 14:54:43 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"2\",\n    \"name\": \"Ozempic\",\n    \"weight\": 25,\n    \"code\": \"OZEMPIC_41\",\n    \"image\": \"http://localhost:8080/public/Ozempic.png\"\n}"
+						}
+					]
+				},
+				{
+					"name": "List of medication",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/v1/medication/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"medication",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List of medication",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8070/v1/medication/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8070",
+									"path": [
+										"v1",
+										"medication",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jan 2023 14:45:06 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"1\",\n        \"name\": \"Acetaminophen\",\n        \"weight\": 50,\n        \"code\": \"ACETAMINOPHEN_200\",\n        \"image\": \"http://localhost:8080/public/Acetaminophen.png\"\n    },\n    {\n        \"id\": \"2\",\n        \"name\": \"Adderall\",\n        \"weight\": 60,\n        \"code\": \"ADDERALL_100\",\n        \"image\": \"http://localhost:8080/public/Adderall.png\"\n    },\n    {\n        \"id\": \"3\",\n        \"name\": \"Amitriptyline\",\n        \"weight\": 45,\n        \"code\": \"AMITRIPTYLINE_210\",\n        \"image\": \"http://localhost:8080/public/Amitriptyline.png\"\n    },\n    {\n        \"id\": \"4\",\n        \"name\": \"Amlodipine\",\n        \"weight\": 41,\n        \"code\": \"AMLODIPINE_45\",\n        \"image\": \"http://localhost:8080/public/Amlodipine.png\"\n    },\n    {\n        \"id\": \"5\",\n        \"name\": \"Amoxicillin\",\n        \"weight\": 33,\n        \"code\": \"AMOXICILLIN_457\",\n        \"image\": \"http://localhost:8080/public/Amoxicillin.png\"\n    },\n    {\n        \"id\": \"6\",\n        \"name\": \"Ativan\",\n        \"weight\": 80,\n        \"code\": \"ATIVAN_100\",\n        \"image\": \"http://localhost:8080/public/Ativan.png\"\n    },\n    {\n        \"id\": \"7\",\n        \"name\": \"Atorvastatin\",\n        \"weight\": 44,\n        \"code\": \"ATORVASTATIN_200\",\n        \"image\": \"http://localhost:8080/public/Atorvastatin.png\"\n    },\n    {\n        \"id\": \"8\",\n        \"name\": \"Azithromycin\",\n        \"weight\": 32,\n        \"code\": \"AZITHROMYCIN_100\",\n        \"image\": \"http://localhost:8080/public/Azithromycin.png\"\n    },\n    {\n        \"id\": \"20\",\n        \"name\": \"Ozempic\",\n        \"weight\": 24,\n        \"code\": \"OZEMPIC_22\",\n        \"image\": \"http://localhost:8080/public/Ozempic.png\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Medication",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/v1/medication/255",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"medication",
+								"255"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Medication",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8070/v1/medication/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8070",
+									"path": [
+										"v1",
+										"medication",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jan 2023 16:31:30 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"2\",\n    \"name\": \"Adderall\",\n    \"weight\": 60,\n    \"code\": \"ADDERALL_100\",\n    \"image\": \"http://localhost:8080/public/Adderall.png\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Load medication to drone",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/drone/1/load/medication/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"drone",
+						"1",
+						"load",
+						"medication",
+						"3"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Load medication to drone",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8070/v1/drone/2/load/medication/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8070",
+							"path": [
+								"v1",
+								"drone",
+								"2",
+								"load",
+								"medication",
+								"4"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 20 Jan 2023 15:31:58 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Medication loaded\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Drone medications",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/drone/2/medications",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"drone",
+						"2",
+						"medications"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Drone medications",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8070/v1/drone/2/medications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8070",
+							"path": [
+								"v1",
+								"drone",
+								"2",
+								"medications"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 20 Jan 2023 15:41:54 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"1\",\n        \"name\": \"Acetaminophen\",\n        \"weight\": 50,\n        \"code\": \"ACETAMINOPHEN_200\",\n        \"image\": \"http://localhost:8080/public/Acetaminophen.png\"\n    },\n    {\n        \"id\": \"4\",\n        \"name\": \"Amlodipine\",\n        \"weight\": 41,\n        \"code\": \"AMLODIPINE_45\",\n        \"image\": \"http://localhost:8080/public/Amlodipine.png\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "List of checks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/check",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"check"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "List of checks",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8060/v1/check",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8060",
+							"path": [
+								"v1",
+								"check"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 20 Jan 2023 21:35:08 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 20,\n        \"description\": \"[Drone: 1, Battery Level: 100]\",\n        \"date\": \"2023-01-20T16:35:00.005271\"\n    },\n    {\n        \"id\": 21,\n        \"description\": \"[Drone: 2, Battery Level: 80]\",\n        \"date\": \"2023-01-20T16:35:00.008271\"\n    },\n    {\n        \"id\": 22,\n        \"description\": \"[Drone: 3, Battery Level: 30]\",\n        \"date\": \"2023-01-20T16:35:00.00927\"\n    },\n    {\n        \"id\": 23,\n        \"description\": \"[Drone: 4, Battery Level: 70]\",\n        \"date\": \"2023-01-20T16:35:00.00927\"\n    }\n]"
+				}
+			]
+		}
+	]
+}

@@ -20,7 +20,7 @@ CREATE TABLE medication
    primary key (id)
 );
 
-create table checks
+CREATE TABLE checks
 (
    id integer not null AUTO_INCREMENT,
    description varchar (255) not null,
@@ -28,4 +28,5 @@ create table checks
    primary key (id)
 );
 
+create sequence hibernate_sequence start with 20 increment by 1;
 ALTER TABLE medication ADD CONSTRAINT medication_drone_fkey FOREIGN KEY (drone_id) REFERENCES drone;

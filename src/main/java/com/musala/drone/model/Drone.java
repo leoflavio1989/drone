@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,9 +42,8 @@ public class Drone {
 	@Enumerated(value = EnumType.STRING)
 	private DroneState state;
 
-
 	// bi-directional one-to-many association to medication
-	@OneToMany(mappedBy = "drone")
+	@OneToMany(mappedBy = "drone", fetch = FetchType.EAGER)
 	private List<Medication> medications;
 
 	public String getSerialNumber() {

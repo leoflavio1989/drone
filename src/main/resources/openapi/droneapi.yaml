@@ -1,0 +1,534 @@
+openapi: 3.0.3
+info:
+  title: Drone API
+  description: Drone API . Please see http://127.0.0.1:8080/docs/droneapi for more details.
+  version: v1
+  contact:
+    name: Drone API Support
+    url: https://github.com/leoflavio1989/drone
+    email: leoflavio1989@gmail.com
+servers:
+  - url: http://127.0.0.1:8080/v1
+    description: localhost Drone API server
+paths:
+  /drone:
+    post:
+      summary: Create a drone
+      operationId: createDrone
+      requestBody:
+        description: 'New Drone'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Drone'
+            examples:
+              droneRequest:
+                value:
+                 serialNumber: 515157115321351515
+                 model: Middleweight
+                 weightLimit: 300
+                 batteryCapacity: 90
+                 state: RETURNING
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Drone'
+              examples:
+                droneRespond:
+                  value:
+                   id: 1002
+                   serialNumber: 515157115321351515
+                   model: Middleweight
+                   weightLimit: 300
+                   batteryCapacity: 90
+                   state: RETURNING
+      tags:
+        - Drone
+    get:
+      summary: Get all drones
+      operationId: getAllDrones
+      responses:
+        '200':
+          description: List of Drones
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Drones'
+              examples:
+                pos1:
+                  value:
+                   id: 1354
+                   serialNumber: 515157115321351515
+                   model: Lightweight
+                   weightLimit: 40
+                   batteryCapacity: 30
+                   state: RETURNING
+                pos2:
+                  value:
+                   id: 1200
+                   serialNumber: 87848494981
+                   model: Middleweight
+                   weightLimit: 300
+                   batteryCapacity: 90
+                   state: IDLE        
+      tags:
+        - Drone
+    put:
+      summary: Update a drone
+      operationId: updateDrone
+      requestBody:
+        description: 'Drone'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Drone'
+            examples:
+              droneRequest:
+                value:
+                 id: 1345
+                 serialNumber: 515157115321351515
+                 model: Middleweight
+                 weightLimit: 250
+                 batteryCapacity: 70
+                 state: IDLE
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Drone'
+              examples:
+                droneRespond:
+                  value:
+                   id: 1345
+                   serialNumber: 515157115321351515
+                   model: Middleweight
+                   weightLimit: 250
+                   batteryCapacity: 70
+                   state: IDLE
+      tags:
+        - Drone
+  /drone/{droneId}/nextstate:
+    patch:
+      summary: Update drone state
+      operationId: updateDroneState      
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+              examples:
+                droneRespond:
+                  value:
+                    message: State changed
+      tags:
+        - Drone
+      parameters:
+        - name: droneId
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            description: Id of the Drone
+  /drone/{droneId}:
+    get:
+      summary: Get a drone
+      operationId: getDrone
+      responses:
+        '200':
+          description: Drone
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Drone'
+              examples:
+                pos1:
+                  value:
+                   id: 1345
+                   serialNumber: 515157115321351515
+                   model: Middleweight
+                   weightLimit: 250
+                   batteryCapacity: 70
+                   state: IDLE
+      tags:
+        - Drone
+      parameters:
+        - name: droneId
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            description: Id of the Drone
+  /drone/{droneId}/batterylevel:
+    get:
+      summary: Get drone battery
+      operationId: getDroneBattery
+      responses:
+        '200':
+          description: Battery level
+          content:
+            application/json:
+              schema:
+                 $ref: '#/components/schemas/GenericResponse'
+              examples:
+                Respond:
+                  value:
+                    message: Medication loaded
+      tags:
+        - Drone
+      parameters:
+        - name: droneId
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            description: Id of the Drone
+  /drone/available:
+    get:
+      summary: Get available drones
+      operationId: getAvailableDrones
+      responses:
+        '200':
+          description: List of Drone
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Drones'
+              examples:
+                pos1:
+                  value:
+                   id: 1354
+                   serialNumber: 515157115321351515
+                   model: Lightweight
+                   weightLimit: 40
+                   batteryCapacity: 30
+                   state: IDLE
+                pos2:
+                  value:
+                   id: 1200
+                   serialNumber: 87848494981
+                   model: Middleweight
+                   weightLimit: 300
+                   batteryCapacity: 90
+                   state: IDLE
+      tags:
+        - Drone
+  /drone/{droneId}/load/medication/{medicationId}:
+    post:
+      summary: Load a medication to a drone
+      operationId: loadMedicationToDrone
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+              examples:
+                Respond:
+                  value:
+                    message: Medication loaded
+      tags:
+        - Medication
+      parameters:
+        - name: medicationId
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            description: Id of the Medication
+        - name: droneId
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            description: Id of the Drone
+  /medication:
+    post:
+      summary: Create a medication
+      operationId: createMedication
+      requestBody:
+        description: 'New Medication'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Medication'
+            examples:
+              medicationRequest:
+                value:
+                 name: aspirin
+                 weight: 10
+                 code: HDYE874_KDJ7
+                 image: "STRING"
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Medication'
+              examples:
+                medicationRespond:
+                  value:
+                   id: 1245
+                   name: aspirin
+                   weight: 10
+                   code: HDYE874_KDJ7
+                   image: "STRING"
+      tags:
+        - Medication
+    get:
+      summary: Get all medications
+      operationId: getAllMedications
+      responses:
+        '200':
+          description: List of medications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Medications'
+              examples:
+                pos1:
+                  value:
+                   id: 1245
+                   name: aspirin
+                   weight: 10
+                   code: HDYE874_KDJ7
+                   image: "STRING"
+                pos2:
+                  value:
+                   id: 8541
+                   name: acetaminophen
+                   weight: 42
+                   code: JFHGHF774L
+                   image: "STRING"
+      tags:
+        - Medication
+    put:
+      summary: update a medication
+      operationId: updateMedication
+      requestBody:
+        description: 'Medication'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Medication'
+            examples:
+              medicationRequest:
+                value:
+                 id: 1245
+                 name: aspirin
+                 weight: 15
+                 code: HDYE874_KDJ7
+                 image: "STRING"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Medication'
+              examples:
+                medicationRespond:
+                  value:
+                   id: 1245
+                   name: aspirin
+                   weight: 15
+                   code: HDYE874_KDJ7
+                   image: "STRING"
+      tags:
+        - Medication
+  /medication/{medicationId}:
+    get:
+      summary: Get a medication
+      operationId: getMedication
+      responses:
+        '200':
+          description: Medication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Medication'
+              examples:
+                pos1:
+                  value:
+                   id: 1245
+                   name: aspirin
+                   weight: 15
+                   code: HDYE874_KDJ7
+                   image: "STRING"
+      tags:
+        - Medication
+      parameters:
+        - name: medicationId
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            description: Id of the Medication
+  /drone/{droneId}/medications:
+    get:
+      summary: Get all medications loaded for a drone
+      operationId: getDroneMedications
+      responses:
+        '200':
+          description: List of medications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Medications'
+              examples:
+                pos1:
+                  value:
+                   id: 1245
+                   name: aspirin
+                   weight: 10
+                   code: HDYE874_KDJ7
+                   image: "STRING"
+                pos2:
+                  value:
+                   id: 8541
+                   name: acetaminophen
+                   weight: 42
+                   code: JFHGHF774L
+                   image: "STRING"
+      tags:
+        - Accions
+      parameters:
+        - name: droneId
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            description: Id of the Drone
+  /check:
+    get:
+      summary: Get list of checks
+      operationId: getChecks
+      responses:
+        '200':
+          description: List of checks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckList'
+              examples:
+                pos1:
+                  value:
+                   id: 1245
+                   name: aspirin
+                   weight: 10
+                   code: HDYE874_KDJ7
+                   image: "STRING"
+                pos2:
+                  value:
+                   id: 8541
+                   name: acetaminophen
+                   weight: 42
+                   code: JFHGHF774L
+                   image: "STRING"
+      tags:
+        - Accions
+tags:
+  - name: Drone
+    description: "Calls related with Drones"
+  - name: Medication
+    description: "Calls related with Medication"
+  - name: Accions
+    description: "Acctions between Medications and Drones"
+components:
+  schemas:
+    Drone:
+      type: object
+      required:
+        - serialNumber
+        - weightLimit
+        - batteryCapacity
+        - state
+      properties:
+        id:
+          type: integer
+        serialNumber:
+          type: string
+        model:
+          type: string
+          enum: ["Lightweight", "Middleweight", "Cruiserweight", "Heavyweight"]
+        weightLimit:
+          type: integer
+        batteryCapacity:
+          type: integer
+        state:
+          type: string
+          enum: ["IDLE", "LOADING", "LOADED", "DELIVERING", "DELIVERED", "RETURNING"]
+    Drones:
+      type: array
+      items:
+        $ref: '#/components/schemas/Drone'
+    DroneMedications:
+      type: object
+      properties:
+        droneId:
+          type: string
+    Medication:
+      type: object
+      required:
+        - name
+        - weight
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        weight:
+          type: integer
+        code:
+          type: string
+        image:
+          type: string
+    Medications:
+      type: array
+      items:
+        $ref: '#/components/schemas/Medication'
+    CheckList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Checks'
+    Checks:
+      type: object      
+      properties:
+        id:
+          type: integer
+        description:
+          type: string
+        date:
+          type: string
+    GenericResponse:
+      type: object
+      properties:
+        message:
+          type: string
+    DroneError:
+      type: object
+      description: Standard Error
+      title: Error
+    

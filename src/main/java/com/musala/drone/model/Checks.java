@@ -3,21 +3,20 @@ package com.musala.drone.model;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-
 @Entity
 @Table(name = "checks")
 public class Checks {
-	
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(unique = true, nullable = false)
-    private Integer id;
 
-    @Column
-    private String description;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(unique = true, nullable = false)
+	private Integer id;
 
-    @Column
-    private LocalDateTime date;
+	@Column
+	private String description;
+
+	@Column
+	private LocalDateTime date;
 
 	public Integer getId() {
 		return id;
@@ -42,6 +41,5 @@ public class Checks {
 	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
-    
-    
+
 }

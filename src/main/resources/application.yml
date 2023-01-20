@@ -16,3 +16,9 @@ spring:
     url: jdbc:h2:mem:mydb
     username: musala
     password: musala
+springdoc:
+  swagger-ui:
+    path=/swagger-ui.html
+checkBatteryLevel: '0 */5 * * * *'
+server:
+   port: 8060

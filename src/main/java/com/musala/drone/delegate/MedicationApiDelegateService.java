@@ -40,7 +40,7 @@ public class MedicationApiDelegateService implements MedicationApiDelegate {
 
 		// ------ validate data
 		String error = medicationService.validateMeditationData(medicationDto);
-		if (!error.isEmpty()) {
+		if (error != null && !error.isEmpty()) {
 			throw new DroneException(HttpStatus.BAD_REQUEST, "Input Errors: \n" + error);
 		}
 		// ------- end validate data
@@ -73,7 +73,7 @@ public class MedicationApiDelegateService implements MedicationApiDelegate {
 	public ResponseEntity<MedicationDto> updateMedication(MedicationDto medicationDto) {
 		// ------ validate data
 		String error = medicationService.validateMeditationData(medicationDto);
-		if (!error.isEmpty()) {
+		if (error != null && !error.isEmpty()) {
 			throw new DroneException(HttpStatus.BAD_REQUEST, "Input Errors: \n" + error);
 		}
 		// ------- end validate data

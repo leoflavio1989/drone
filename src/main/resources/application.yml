@@ -20,5 +20,3 @@ springdoc:
   swagger-ui:
     path=/swagger-ui.html
 checkBatteryLevel: '0 */5 * * * *'
-server:
-   port: 8060

@@ -50,7 +50,7 @@ public class DroneApiDelegateService implements DroneApiDelegate {
 
 		// ------ validate data
 		String error = droneService.validateDroneData(droneDto);
-		if (!error.isEmpty()) {
+		if (error != null && !error.isEmpty()) {
 			throw new DroneException(HttpStatus.BAD_REQUEST, "Input Errors: \n" + error);
 		}
 		// ------- end validate data
@@ -90,7 +90,7 @@ public class DroneApiDelegateService implements DroneApiDelegate {
 		// ------ validate data
 		String error = droneService.validateDroneData(droneDto);
 
-		if (!error.isEmpty()) {
+		if (error != null && !error.isEmpty()) {
 			throw new DroneException(HttpStatus.BAD_REQUEST, "Input Errors: \n" + error);
 		}
 		// ------- end validate data

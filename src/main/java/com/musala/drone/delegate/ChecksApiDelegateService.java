@@ -24,6 +24,7 @@ public class ChecksApiDelegateService implements CheckApiDelegate {
 		this.checksMapper = checksMapper;
 	}
 	
+	// List of battery checks
 	@Override
 	public ResponseEntity<List<ChecksDto>> getChecks() {
 		List<Checks> checks = checksRepo.findAll();

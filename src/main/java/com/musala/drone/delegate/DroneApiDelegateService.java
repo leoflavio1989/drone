@@ -45,6 +45,7 @@ public class DroneApiDelegateService implements DroneApiDelegate {
 		this.medicationMapper = medicationMapper;
 	}
 
+	// Create a drone
 	@Override
 	public ResponseEntity<DroneDto> createDrone(DroneDto droneDto) {
 
@@ -63,6 +64,7 @@ public class DroneApiDelegateService implements DroneApiDelegate {
 
 	}
 
+	// List of Drones
 	@Override
 	public ResponseEntity<List<DroneDto>> getAllDrones() {
 		List<Drone> drones = droneRepo.findAll();
@@ -70,6 +72,7 @@ public class DroneApiDelegateService implements DroneApiDelegate {
 		return ResponseEntity.ok(dto);
 	}
 
+	// Return a specific drone by id
 	@Override
 	public ResponseEntity<DroneDto> getDrone(Integer droneId) {
 
@@ -79,14 +82,15 @@ public class DroneApiDelegateService implements DroneApiDelegate {
 		return ResponseEntity.ok(dto);
 	}
 
+	// Update a drone
 	@Override
 	public ResponseEntity<DroneDto> updateDrone(DroneDto droneDto) {
-		
+
 		Drone drone = droneRepo.findById(droneDto.getId())
 				.orElseThrow(() -> new NotFoundException("The 'droneId' doesn't exist."));
-		
+
 		DroneState state = droneService.nextState(drone);
-		
+
 		// ------ validate data
 		String error = droneService.validateDroneData(droneDto);
 
@@ -96,10 +100,11 @@ public class DroneApiDelegateService implements DroneApiDelegate {
 		// ------- end validate data
 
 		drone = droneMapper.droneDtoToDrone(droneDto);
-		if(!state.equals(drone.getState())) {
-			throw new DroneException(HttpStatus.BAD_REQUEST, "The 'state' should be the next state of the drone, in this case '"+ state + "'.");
+		if (!state.equals(drone.getState())) {
+			throw new DroneException(HttpStatus.BAD_REQUEST,
+					"The 'state' should be the next state of the drone, in this case '" + state + "'.");
 		}
-		
+
 		drone = droneRepo.save(drone);
 		droneDto = droneMapper.toDto(drone);
 		log.info("Drone " + drone.getSerialNumber() + " updated.");
@@ -107,6 +112,7 @@ public class DroneApiDelegateService implements DroneApiDelegate {
 		return ResponseEntity.ok(droneDto);
 	}
 
+	// Load a medication to a drone
 	@Override
 	public ResponseEntity<GenericResponseDto> loadMedicationToDrone(Integer medicationId, Integer droneId) {
 		GenericResponseDto dto = new GenericResponseDto();
@@ -114,19 +120,19 @@ public class DroneApiDelegateService implements DroneApiDelegate {
 				.orElseThrow(() -> new NotFoundException("The 'droneId' does't exist."));
 		Medication medication = medicationRepo.findById(medicationId)
 				.orElseThrow(() -> new NotFoundException("The 'medicationId' does't exist."));
-		if(medication.getDrone() != null) {
-			if(medication.getDrone().getId() == droneId) {
+		if (medication.getDrone() != null) {
+			if (medication.getDrone().getId() == droneId) {
 				dto.setMessage("This medication has already been loaded by this drone.");
-			}else {
-				dto.setMessage("This medication has been loaded by another drone.");				
+			} else {
+				dto.setMessage("This medication has been loaded by another drone.");
 			}
 			return ResponseEntity.ok(dto);
 		}
-		if(drone.getState().equals(DroneState.IDLE)) {
+		if (drone.getState().equals(DroneState.IDLE)) {
 			drone.setState(DroneState.LOADING);
 			drone = droneRepo.save(drone);
 		}
-		if(!drone.getState().equals(DroneState.LOADING)) {
+		if (!drone.getState().equals(DroneState.LOADING)) {
 			dto.setMessage("The drone status must be 'LOADING' to load it.");
 			return ResponseEntity.ok(dto);
 		}
@@ -138,8 +144,8 @@ public class DroneApiDelegateService implements DroneApiDelegate {
 			dto.setMessage("Overloaded drone");
 			return ResponseEntity.ok(dto);
 		}
-		medication.setDrone(drone);		
-		
+		medication.setDrone(drone);
+
 		try {
 			medicationRepo.save(medication);
 			dto.setMessage("Medication loaded");
@@ -149,7 +155,8 @@ public class DroneApiDelegateService implements DroneApiDelegate {
 
 		return ResponseEntity.ok(dto);
 	}
-	
+
+	// List of medications by a specific drone
 	@Override
 	public ResponseEntity<List<MedicationDto>> getDroneMedications(Integer droneId) {
 		Drone drone = droneRepo.findById(droneId)
@@ -157,28 +164,30 @@ public class DroneApiDelegateService implements DroneApiDelegate {
 		List<Medication> list = drone.getMedications();
 		return ResponseEntity.ok(medicationMapper.toDtos(list));
 	}
-	
+
+	// List of available drones
 	@Override
 	public ResponseEntity<List<DroneDto>> getAvailableDrones() {
 		List<Drone> drones = droneRepo.findByState(DroneState.IDLE);
 		List<DroneDto> dto = droneMapper.toDtos(drones);
 		return ResponseEntity.ok(dto);
 	}
-	
+
+	// Pass to the next drone state
 	@Override
 	public ResponseEntity<GenericResponseDto> updateDroneState(Integer droneId) {
 		Drone drone = droneRepo.findById(droneId)
 				.orElseThrow(() -> new NotFoundException("The 'droneId' doesn't exist."));
 		GenericResponseDto dto = new GenericResponseDto();
 		DroneState state = droneService.nextState(drone);
-		
-		if(state.equals(DroneState.LOADING) && drone.getBatteryCapacity() < 25) {
+
+		if (state.equals(DroneState.LOADING) && drone.getBatteryCapacity() < 25) {
 			dto.setMessage("The 'state' can't be LOADING while the 'batteryCapacity' is less than 25.");
 			return ResponseEntity.ok(dto);
 		}
-		
+
 		drone.setState(state);
-		if(state.equals(DroneState.DELIVERED)) {
+		if (state.equals(DroneState.DELIVERED)) {
 			List<Medication> list = drone.getMedications();
 			for (Medication medication : list) {
 				medication.setDrone(null);
@@ -193,15 +202,16 @@ public class DroneApiDelegateService implements DroneApiDelegate {
 		}
 		return ResponseEntity.ok(dto);
 	}
-	
+
+	// Consult the drone battery level
 	@Override
 	public ResponseEntity<GenericResponseDto> getDroneBattery(Integer droneId) {
 		Drone drone = droneRepo.findById(droneId)
 				.orElseThrow(() -> new NotFoundException("The 'droneId' doesn't exist."));
 		int battery = drone.getBatteryCapacity();
-		
+
 		GenericResponseDto dto = new GenericResponseDto();
-		
+
 		dto.setMessage("The battery level of the drone is " + battery + "%.");
 		return ResponseEntity.ok(dto);
 	}
